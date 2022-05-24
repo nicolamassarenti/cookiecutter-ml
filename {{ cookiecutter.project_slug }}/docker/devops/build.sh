@@ -10,8 +10,8 @@ ROOT_DIR="$(  dirname "$(  dirname "${SCRIPT_DIR}" )" )"
 # References
 TAG="latest"
 PROJECT_NAME={{cookiecutter.project_slug}}
-CONTEXT="${ROOT_DIR}"/${PROJECT_NAME}
-DOCKERFILE_LOCATION="${ROOT_DIR}"/containers/Dockerfile
+CONTEXT="${ROOT_DIR}"
+DOCKERFILE_LOCATION="${ROOT_DIR}"/docker/containers/Dockerfile
 
 # Building image
 docker build  -f "${DOCKERFILE_LOCATION}" \
