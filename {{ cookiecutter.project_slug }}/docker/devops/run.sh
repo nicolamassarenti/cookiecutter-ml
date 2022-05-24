@@ -12,14 +12,18 @@ TAG="latest"
 PROJECT_NAME={{cookiecutter.project_slug}}
 
 # Running image
-{%- if cookiecutter.use_nvidia_docker == 'yes' -%}
+{% if cookiecutter.use_nvidia_docker == 'yes' %}
 
 docker run  -p 8080:8080 \
             --gpus all \
             --runtime nvidia \
             -e NVIDIA_DRIVER_CAPABILITIES=all \
-            ${PROJECT_NAME}:${TAG}
+            --name ${PROJECT_NAME} \
+	    --rm \
+	    ${PROJECT_NAME}:${TAG}
 {%- else -%}
 docker run  -p 8080:8080 \
+	    --name ${PROJECT_NAME} \
+	    --rm \
             ${PROJECT_NAME}:${TAG}
 {%- endif %}
